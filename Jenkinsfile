@@ -45,10 +45,18 @@ pipeline {
         stage('🚀 Despliegue (Deploy)') {
             // Este stage solo se ejecuta si los anteriores funcionaron
             steps {
+                
                 echo '🌐 Desplegando en el entorno de STAGING...'
                 echo 'cat version.txt'
                 sleep time: 3, unit: 'SECONDS'
                 echo '🚀 ¡Despliegue completado con éxito! La app está en línea.'
+            }
+        }
+
+        stage("Email Build Status"){
+            steps{
+                input("Do you want to procedure?")
+                mail body:"${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} -${currentBuild.currentResult}\n\nCheck Console output at ${env.BUILD_URL} to review results.", subject:"${env.JOB_NAME} -Build# ${env.BUILD_NUMBER} -${currentBuild.currentResult}!!", to:'mpenag1121@gmail.com'
             }
         }
     }
