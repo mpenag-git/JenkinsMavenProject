@@ -35,8 +35,7 @@ public class SampleSeleniumTest {
 		System.out.println("Clicking Next button");
 		driver.findElement(By.xpath("(//span[normalize-space()='Siguiente'])[1]")).click();
 		Thread.sleep(5000);
-		boolean textFound = driver.getPageSource().contains("No se ha podido... ");
-		//boolean textFound = driver.getPageSource().contains("No se ha podido iniciar sesión");
+		boolean textFound = driver.getPageSource().contains("No se ha podido iniciar sesión");
 		AssertJUnit.assertTrue(textFound);
 	}
 	
